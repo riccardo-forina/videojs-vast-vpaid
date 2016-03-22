@@ -96,7 +96,7 @@ describe("VASTTracker", function () {
       it("must add ASSETURI and CONTENTPLAYHEAD to the tracking variables", function(){
         tracker.trackURLs(['http://sample.track.url']);
         assertVASTTrackRequest(['http://sample.track.url'], {
-          ASSETURI: ASSET_URI,
+          ADID: null, ASSETURI: ASSET_URI,
           CONTENTPLAYHEAD: "00:00:00.000"
         });
       });
@@ -104,7 +104,7 @@ describe("VASTTracker", function () {
       it("must track the passed urls with he passed variables", function(){
         tracker.trackURLs(['http://sample.track.url'], {FOOVAR: 'FOOVAR'});
         assertVASTTrackRequest(['http://sample.track.url'], {
-          ASSETURI: ASSET_URI,
+          ADID: null, ASSETURI: ASSET_URI,
           CONTENTPLAYHEAD: "00:00:00.000",
           FOOVAR: 'FOOVAR'
         });
@@ -133,11 +133,11 @@ describe("VASTTracker", function () {
 
       it("must track the passed event", function () {
         tracker.trackEvent('start');
-        assertVASTTrackRequest(['http://start.trackEvent.url'], {ASSETURI: ASSET_URI, CONTENTPLAYHEAD: "00:00:00.000"});
+        assertVASTTrackRequest(['http://start.trackEvent.url'], {ADID: null, ASSETURI: ASSET_URI, CONTENTPLAYHEAD: "00:00:00.000"});
 
         tracker.progress = 120;
         tracker.trackEvent('close');
-        assertVASTTrackRequest(['http://close.trackEvent.url'], {ASSETURI: ASSET_URI, CONTENTPLAYHEAD: "00:00:00.120"});
+        assertVASTTrackRequest(['http://close.trackEvent.url'], {ADID: null, ASSETURI: ASSET_URI, CONTENTPLAYHEAD: "00:00:00.120"});
       });
 
       it("must not track anything if the tracker is not tracking the passed event", function () {
@@ -147,7 +147,7 @@ describe("VASTTracker", function () {
 
       it("must be possible to mark an track event as track one.", function () {
         tracker.trackEvent('start', true);
-        assertVASTTrackRequest(['http://start.trackEvent.url'], {ASSETURI: ASSET_URI, CONTENTPLAYHEAD: "00:00:00.000"});
+        assertVASTTrackRequest(['http://start.trackEvent.url'], {ADID: null, ASSETURI: ASSET_URI, CONTENTPLAYHEAD: "00:00:00.000"});
 
         assert.isUndefined(tracker.response.trackingEvents.start);
 
@@ -386,7 +386,7 @@ describe("VASTTracker", function () {
       it("must track the passed error code", function(){
         tracker.trackErrorWithCode(101);
         assertVASTTrackRequest(['http://error.track.url'], {
-          ASSETURI: ASSET_URI,
+          ADID: null, ASSETURI: ASSET_URI,
           CONTENTPLAYHEAD: "00:00:00.000",
           ERRORCODE: 101
         });
@@ -412,7 +412,7 @@ describe("VASTTracker", function () {
       it("must track the impressionURLs", function(){
         tracker.trackImpressions();
         assertVASTTrackRequest(['http://impressions.track.url'], {
-          ASSETURI: ASSET_URI,
+          ADID: null, ASSETURI: ASSET_URI,
           CONTENTPLAYHEAD: "00:00:00.000"
         });
       });
@@ -430,12 +430,12 @@ describe("VASTTracker", function () {
 
       it("must track the creativeViewURLs when called with trackCreativeView", function(){
         tracker.trackCreativeView();
-        assertVASTTrackRequest(['http://creativeView.trackEvent.url'], {ASSETURI: ASSET_URI, CONTENTPLAYHEAD: "00:00:00.000"});
+        assertVASTTrackRequest(['http://creativeView.trackEvent.url'], {ADID: null, ASSETURI: ASSET_URI, CONTENTPLAYHEAD: "00:00:00.000"});
       });
 
       it("must track the creativeViewURLs when called with trackEvent", function(){
         tracker.trackEvent('creativeView');
-        assertVASTTrackRequest(['http://creativeView.trackEvent.url'], {ASSETURI: ASSET_URI, CONTENTPLAYHEAD: "00:00:00.000"});
+        assertVASTTrackRequest(['http://creativeView.trackEvent.url'], {ADID: null, ASSETURI: ASSET_URI, CONTENTPLAYHEAD: "00:00:00.000"});
       });
     });
 
@@ -450,7 +450,7 @@ describe("VASTTracker", function () {
       it("must track the clickTracking URLS", function(){
         tracker.trackClick();
         assertVASTTrackRequest(['http://click.track.url'], {
-          ASSETURI: ASSET_URI,
+          ADID: null, ASSETURI: ASSET_URI,
           CONTENTPLAYHEAD: "00:00:00.000"
         });
       });
