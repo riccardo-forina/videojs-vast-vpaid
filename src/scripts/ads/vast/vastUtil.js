@@ -21,14 +21,8 @@ var vastUtil = {
   parseURLMacros: function parseMacros(URLMacros, variables) {
     var parsedURLs = [];
 
-    variables = variables || {};
-
-    if (!(variables["CACHEBUSTING"])) {
-      variables["CACHEBUSTING"] = Math.round(Math.random() * 1.0e+10);
-    }
-
     URLMacros.forEach(function (URLMacro) {
-      parsedURLs.push(vastUtil._parseURLMacro(URLMacro, variables));
+      parsedURLs.push(vastUtil.parseURLMacro(URLMacro, variables));
     });
 
     return parsedURLs;
@@ -39,6 +33,9 @@ var vastUtil = {
 
     if (!(variables["CACHEBUSTING"])) {
       variables["CACHEBUSTING"] = Math.round(Math.random() * 1.0e+10);
+    }
+    if (!(variables["TIMESTAMP"])) {
+      variables["TIMESTAMP"] = Date.now();
     }
 
     return vastUtil._parseURLMacro(URLMacro, variables);
