@@ -38,7 +38,6 @@ VASTTracker.prototype.sanityCheck = function(assetURI, vastResponse) {
 
 VASTTracker.prototype.trackURLs = function trackURLs(urls, variables) {
   if (utilities.isArray(urls) && urls.length > 0) {
-    console.log(this);
     variables = utilities.extend({
       ASSETURI: this.assetURI,
       CONTENTPLAYHEAD: vastUtil.formatProgress(this.progress),
