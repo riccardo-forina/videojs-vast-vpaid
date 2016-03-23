@@ -182,8 +182,6 @@ VASTIntegrator.prototype._addSkipButton = function addSkipButton(source, tracker
   var skipOffsetInSec;
   var that = this;
 
-  console.log(that);
-
   if (utilities.isNumber(response.skipoffset)) {
     skipOffsetInSec = response.skipoffset / 1000;
     addSkipButtonToPlayer(this.player, skipOffsetInSec);
