@@ -182,6 +182,8 @@ VASTIntegrator.prototype._addSkipButton = function addSkipButton(source, tracker
   var skipOffsetInSec;
   var that = this;
 
+  console.log(that);
+
   if (utilities.isNumber(response.skipoffset)) {
     skipOffsetInSec = response.skipoffset / 1000;
     addSkipButtonToPlayer(this.player, skipOffsetInSec);
@@ -193,14 +195,14 @@ VASTIntegrator.prototype._addSkipButton = function addSkipButton(source, tracker
     var skipButton = createSkipButton(player);
     var updateSkipButton = updateSkipButtonState.bind(that, skipButton, skipOffset, player);
 
-    player.el().appendChild(skipButton);
+    player.controlBar.el().appendChild(skipButton);
     player.on('timeupdate', updateSkipButton);
 
     playerUtils.once(player, ['vast.adEnd', 'vast.adsCancel'], removeSkipButton);
 
     function removeSkipButton() {
       player.off('timeupdate', updateSkipButton);
-      dom.remove(skipButton);
+      player.controlBar.el().removeChild(skipButton);
     }
   }
 

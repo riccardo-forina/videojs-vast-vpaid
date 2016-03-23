@@ -45,7 +45,11 @@ module.exports = function VASTPlugin(options) {
     autoResize: true,
 
     // Path to the VPAID flash ad's loader
-    vpaidFlashLoaderPath: '/VPAIDFlash.swf'
+    vpaidFlashLoaderPath: '/VPAIDFlash.swf',
+    
+    // VAST before v2.0 didn't offer a way to have an ad skippable without using VPAID. 
+    // Set this to have a default skip offset. Value in milliseconds
+    adSkipOffset: null
   };
 
   var settings = utilities.extend({}, defaultOpts, options || {});
@@ -232,6 +236,10 @@ module.exports = function VASTPlugin(options) {
   function playPrerollAd(callback) {
     async.waterfall([
       getVastResponse,
+      function(response, done) {
+        response.skipoffset = response.skipoffset || settings.adSkipOffset;
+        done(null, response);
+      },
       playAd
     ], callback);
   }
