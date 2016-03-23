@@ -2,3 +2,11 @@
 @import "black-poster";
 @import "videojs.vpaid";
 @import "videojs.vast";
+
+
+
+.vjs-vpaid-ad.vjs-ad-playing .vjs-control-bar {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}

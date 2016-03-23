@@ -14,19 +14,9 @@
 }
 
 div.vast-skip-button {
-  display: block;
-  position: absolute;
-  bottom: 20%;
-  right: 0;
-  background-color: #000;
-  color: white;
-  font-size: 15px;
-  font-weight: bold;
-  width: auto;
-  padding: 8px;
-  z-index: 2;
-  border: 1px solid white;
-  border-right: none;
+  font-size: 13px;
+  line-height: 30px;
+  width: auto !important;
 }
 
 .vast-skip-button.enabled {
@@ -36,7 +26,7 @@ div.vast-skip-button {
 
 .vast-skip-button.enabled:hover {
   cursor: pointer;
-  background: #333;
+  //background: #333;
 }
 
 .vast-blocker {

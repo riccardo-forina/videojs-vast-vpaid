@@ -206,6 +206,7 @@ VASTIntegrator.prototype._addSkipButton = function addSkipButton(source, tracker
 
   function createSkipButton(player) {
     var skipButton = window.document.createElement("div");
+    dom.addClass(skipButton, "vjs-control");
     dom.addClass(skipButton, "vast-skip-button");
 
     skipButton.onclick = function (e) {

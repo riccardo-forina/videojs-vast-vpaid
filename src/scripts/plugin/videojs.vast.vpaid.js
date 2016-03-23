@@ -258,6 +258,12 @@ module.exports = function VASTPlugin(options) {
 
     playerUtils.once(player, ['vast.adEnd', 'vast.adsCancel'], removeAdsLabel);
 
+    if (isVPAID(vastResponse)) {
+      playerUtils.once(player, ['vast.adStart'], hideControlBar);
+
+      playerUtils.once(player, ['vast.adEnd', 'vast.adsCancel'], showControlBar);
+    }
+
     if (utilities.isIDevice()) {
       preventManualProgress();
     }
@@ -277,6 +283,14 @@ module.exports = function VASTPlugin(options) {
     function removeAdsLabel() {
       player.controlBar.removeChild('AdsLabel');
       adFinished = true;
+    }
+
+    function hideControlBar() {
+      player.userActive(false);
+    }
+
+    function showControlBar() {
+      player.userActive(true);
     }
 
     function preventManualProgress() {

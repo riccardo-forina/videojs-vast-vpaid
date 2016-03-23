@@ -412,16 +412,17 @@ VPAIDIntegrator.prototype._addSkipButton = function (adUnit, vastResponse, next)
 
   function addSkipButton(player) {
     skipButton = createSkipButton(player);
-    player.el().appendChild(skipButton);
+    player.controlBar.el().appendChild(skipButton);
   }
 
   function removeSkipButton() {
-    dom.remove(skipButton);
+    player.controlBar.el().removeChild(skipButton);
     skipButton = null;
   }
 
   function createSkipButton() {
     var skipButton = window.document.createElement("div");
+    dom.addClass(skipButton, "vjs-control");
     dom.addClass(skipButton, "vast-skip-button");
     dom.addClass(skipButton, "enabled");
     skipButton.innerHTML = "Skip ad";
